@@ -64,8 +64,8 @@ namespace ConfigureMachineSpeed
 
         private void configureMachine (MachineConfig cfg, StardewValley.Object obj)
         {
-            if (cfg.Minutes < obj.minutesUntilReady.Value)
-                obj.minutesUntilReady.Value = cfg.Minutes;
+            if (cfg.Minutes < obj.MinutesUntilReady)
+                obj.MinutesUntilReady = cfg.Minutes;
         }
 
         /// <summary>Get all game locations.</summary>
