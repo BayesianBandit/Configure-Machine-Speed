@@ -17,7 +17,7 @@ Allows you to change how long it takes for various machines (e.g. kegs, oil make
 
 
 ## How To Use:
-1. Run the game using SMAPI at least once to generate a ?config.json file inside `Stardew Valley/Mods/ConfigureMachineSpeed`.
+1. Run the game using SMAPI at least once to generate a `config.json` file inside `Stardew Valley/Mods/ConfigureMachineSpeed`.
 2. In the `config.json` file you will see two keys: `UpdateInterval` and `Machines`.
 3. `UpdateInterval` sets how often the mod will check the machine's remaining time and alter it if necessary. It's probably fine as-is, but feel free to change it.
 4. `Machines` is where you will add info about which types of machines you wish configure. For example: `"Machines": [{ "Name": "Bee House", "Minutes": 30}]` will make Bee Houses output honey every 30 in-game minutes.
@@ -41,9 +41,9 @@ Allows you to change how long it takes for various machines (e.g. kegs, oil make
 - Oil Maker
 
 ## Known Bugs/Unsupported Machines:
-- Right now the mod only works for speeding up the machines because I'm silly
 - Crab Pots don't respond to the mod
 - Casks don't consistently output higher quality products
+- If you use a mod like UI Info Suite to see how much longer the machines have left to process, it will look like the machines are one minute too fast. This is just cosmetic and has to do with how the speed change is done. The game only measures increments of 10 minutes anyways so it should not affect your gameplay. (The mod is implemented this way on purpose, since the alternative would be less efficient.)
 
 ## Source Code:
 This mod is open source under an MIT License. Feel free to check out it's [GitHub repository](https://github.com/BayesianBandit/ConfigureMachineSpeed). I use the issue tracker there if you would prefer to open an issue there (leaving a post on Nexus Mods is fine too though).
