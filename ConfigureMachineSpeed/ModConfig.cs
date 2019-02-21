@@ -10,6 +10,5 @@
     {
         public string Name = "";
         public int Minutes;
-        public bool IncreaseMinutes = false;
     }
 }
