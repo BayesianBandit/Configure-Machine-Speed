@@ -44,3 +44,6 @@ Stardew Valley Mod: Allows you to change how long it takes for various machines 
 - Right now the mod only works for speeding up the machines because I'm silly
 - Crab Pots don't respond to the mod
 - Casks don't consistently output higher quality products
+
+## Source Code:
+This mod is open source under an MIT License. Feel free to check out it's [GitHub repository](https://github.com/BayesianBandit/ConfigureMachineSpeed). I use the issue tracker there if you would prefer to open an issue there (leaving a post here is fine too though).
