@@ -20,7 +20,7 @@ Stardew Valley Mod: Allows you to change how long it takes for various machines 
 1. Run the game using SMAPI at least once to generate a ?config.json file inside `Stardew Valley/Mods/ConfigureMachineSpeed`.
 2. In the `config.json` file you will see two keys: `UpdateInterval` and `Machines`.
 3. `UpdateInterval` sets how often the mod will check the machine's remaining time and alter it if necessary. It's probably fine as-is, but feel free to change it.
-4. `Machines` is where you will add info about which types of machines you wish configure. For example: `"Machines": [?{ "Name": "Bee House", "Minutes": 30}]` will make Bee Houses output honey every 30 in-game minutes.
+4. `Machines` is where you will add info about which types of machines you wish configure. For example: `"Machines": [{ "Name": "Bee House", "Minutes": 30}]` will make Bee Houses output honey every 30 in-game minutes.
 
 
 ## Supported Machines:
