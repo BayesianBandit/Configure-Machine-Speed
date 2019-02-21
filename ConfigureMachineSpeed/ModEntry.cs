@@ -14,6 +14,10 @@ namespace ConfigureMachineSpeed
     {
         private ModConfig Config;
 
+        /*
+         * Mod Entry & Config Validation
+         */
+
          public override void Entry(IModHelper helper)
         {
             this.Config = processConfig(helper.ReadConfig<ModConfig>());
@@ -21,6 +25,7 @@ namespace ConfigureMachineSpeed
             helper.Events.GameLoop.UpdateTicking += this.OnUpdateTicking;
         }
  
+        // Validate and alter the input from config.json
         private ModConfig processConfig(ModConfig cfg)
         {
             if (cfg.UpdateInterval <= 0)
@@ -33,6 +38,10 @@ namespace ConfigureMachineSpeed
             }
             return cfg;
         }
+
+        /*
+         * Event Callbacks
+         */
 
         private void OnSaveLoaded(object sender, SaveLoadedEventArgs e)
         {
@@ -51,6 +60,11 @@ namespace ConfigureMachineSpeed
             }
         }
 
+        /*
+         * Helper Methods
+         */
+
+        // Sweep through all the machines in the world and configure them with the appropriate configuration.
         private void configureAllMachines()
         {
             IEnumerable<GameLocation> locations = GetLocations();
@@ -65,6 +79,8 @@ namespace ConfigureMachineSpeed
             }
         }
 
+        // Configures a given machine with a given configuration.
+        // Be sure to check that the second parameter is a machine before passing it to this function.
         private void configureMachine (MachineConfig cfg, StardewValley.Object obj)
         {
             if (obj.MinutesUntilReady > 0 && obj.MinutesUntilReady % 10 == 0)
@@ -74,7 +90,7 @@ namespace ConfigureMachineSpeed
             }
         }
 
-        /// <summary>Get all game locations.</summary>
+        /// Get all game locations.
         /// Copied with permission from Pathoschild
         public static IEnumerable<GameLocation> GetLocations()
         {
@@ -87,12 +103,5 @@ namespace ConfigureMachineSpeed
                 );
         }
 
-        private void printConfig()
-        {
-            foreach (MachineConfig machine in this.Config.Machines)
-            {
-                this.Monitor.Log($"{machine.Name} minutes = {machine.Minutes}");
-            }
-        }
     }
 }
