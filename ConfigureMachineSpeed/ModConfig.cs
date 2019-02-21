@@ -8,7 +8,7 @@
 
     internal class MachineConfig
     {
-        public string Name;
+        public string Name = "";
         public int Minutes;
         public bool IncreaseMinutes = false;
     }
