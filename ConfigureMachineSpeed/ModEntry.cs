@@ -17,7 +17,6 @@ namespace ConfigureMachineSpeed
          public override void Entry(IModHelper helper)
         {
             this.Config = processConfig(helper.ReadConfig<ModConfig>());
-            printConfig();
             helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
             helper.Events.GameLoop.UpdateTicking += this.OnUpdateTicking;
         }
@@ -37,11 +36,15 @@ namespace ConfigureMachineSpeed
 
         private void OnSaveLoaded(object sender, SaveLoadedEventArgs e)
         {
+            if (!Context.IsMainPlayer)
+                return;
             configureAllMachines();
         }
 
         private void OnUpdateTicking(object sender, UpdateTickingEventArgs e)
         {
+            if (!Context.IsMainPlayer)
+                return;
             if (e.IsMultipleOf(this.Config.UpdateInterval))
             {
                 configureAllMachines();
