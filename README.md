@@ -1,5 +1,5 @@
-# Configure Machine Speed
-Stardew Valley Mod: Allows you to change how long it takes for various machines (e.g. kegs, oil maker) to finish.
+# Stardew Valley Mod: Configure Machine Speed
+Allows you to change how long it takes for various machines (e.g. kegs, oil maker) to finish.
 
 ## Installation:
 1. Install the latest version of SMAPI
@@ -46,4 +46,4 @@ Stardew Valley Mod: Allows you to change how long it takes for various machines 
 - Casks don't consistently output higher quality products
 
 ## Source Code:
-This mod is open source under an MIT License. Feel free to check out it's [GitHub repository](https://github.com/BayesianBandit/ConfigureMachineSpeed). I use the issue tracker there if you would prefer to open an issue there (leaving a post here is fine too though).
+This mod is open source under an MIT License. Feel free to check out it's [GitHub repository](https://github.com/BayesianBandit/ConfigureMachineSpeed). I use the issue tracker there if you would prefer to open an issue there (leaving a post on Nexus Mods is fine too though).
