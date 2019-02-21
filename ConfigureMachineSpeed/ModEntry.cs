@@ -29,7 +29,7 @@ namespace ConfigureMachineSpeed
             {
                 if (machine.Minutes <= 0)
                     machine.Minutes = 10;
-                machine.Minutes = ((int)machine.Minutes / 10) * 10;
+                machine.Minutes = ((int)machine.Minutes / 10) * 10 - 1; // Kind of a cheap hack to make slowing down machines work, but it eliminates the need to keep a big table of all the machines so I'm going with it unless it makes the mod incompatible with some kinda other mod
             }
             return cfg;
         }
@@ -67,8 +67,11 @@ namespace ConfigureMachineSpeed
 
         private void configureMachine (MachineConfig cfg, StardewValley.Object obj)
         {
-            if (cfg.Minutes < obj.MinutesUntilReady)
+            if (obj.MinutesUntilReady > 0 && obj.MinutesUntilReady % 10 == 0)
+            {
+                this.Monitor.Log($"{obj.Name} = {obj.MinutesUntilReady}");
                 obj.MinutesUntilReady = cfg.Minutes;
+            }
         }
 
         /// <summary>Get all game locations.</summary>
