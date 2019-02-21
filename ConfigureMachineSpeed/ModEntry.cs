@@ -84,10 +84,7 @@ namespace ConfigureMachineSpeed
         private void configureMachine (MachineConfig cfg, StardewValley.Object obj)
         {
             if (obj.MinutesUntilReady > 0 && obj.MinutesUntilReady % 10 == 0)
-            {
-                this.Monitor.Log($"{obj.Name} = {obj.MinutesUntilReady}");
                 obj.MinutesUntilReady = cfg.Minutes;
-            }
         }
 
         /// Get all game locations.
