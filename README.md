@@ -9,8 +9,10 @@ Stardew Valley Mod: Allows you to change how long it takes for various machines 
 
 ## Compatibility:
 - Works with Stardew Valley 1.3 on Linux/Mac/Windows.
+- Compatible with SMAPI 2.10.2+ (untested on earlier versions).
 - Untested on custom machines (let me know what happens if you try it).
 - No known mod conflicts (let me know if you find one).
+- Should be compatible with SMAPI 3.0.0 once it is released.
 
 
 ## How To Use:
