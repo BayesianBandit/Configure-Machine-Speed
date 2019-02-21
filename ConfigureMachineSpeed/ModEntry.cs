@@ -21,7 +21,7 @@ namespace ConfigureMachineSpeed
             helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
             helper.Events.GameLoop.UpdateTicking += this.OnUpdateTicking;
         }
-
+ 
         private ModConfig processConfig(ModConfig cfg)
         {
             if (cfg.UpdateInterval <= 0)
@@ -50,7 +50,7 @@ namespace ConfigureMachineSpeed
 
         private void configureAllMachines()
         {
-            IEnumerable<GameLocation> locations = Game1.locations;
+            IEnumerable<GameLocation> locations = GetLocations();
             foreach (MachineConfig cfg in this.Config.Machines)
             {
                 foreach (GameLocation loc in locations)
@@ -66,6 +66,19 @@ namespace ConfigureMachineSpeed
         {
             if (cfg.Minutes < obj.minutesUntilReady.Value)
                 obj.minutesUntilReady.Value = cfg.Minutes;
+        }
+
+        /// <summary>Get all game locations.</summary>
+        /// Copied with permission from Pathoschild
+        public static IEnumerable<GameLocation> GetLocations()
+        {
+            return Game1.locations
+                .Concat(
+                    from location in Game1.locations.OfType<BuildableGameLocation>()
+                    from building in location.buildings
+                    where building.indoors.Value != null
+                    select building.indoors.Value
+                );
         }
 
         private void printConfig()
