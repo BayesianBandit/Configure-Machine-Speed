@@ -25,6 +25,7 @@ Allows you to change how long it takes for various machines (e.g. kegs, oil make
 
 ## Supported Machines:
 - Bee House
+- Casks (note: you still need to sleep at least once to make the wine/cheese mature)
 - Charcoal Kiln
 - Cheese Press
 - Crystalarium
@@ -44,8 +45,6 @@ Allows you to change how long it takes for various machines (e.g. kegs, oil make
 - Worm Bin
 
 ## Known Bugs/Unsupported Machines:
-- Crab Pots don't respond to the mod
-- Casks don't consistently output higher quality products
 - If you use a mod like UI Info Suite to see how much longer the machines have left to process, it will look like the machines are one minute too fast. This is just cosmetic and has to do with how the speed change is done. The game only measures increments of 10 minutes anyways so it should not affect your gameplay. (The mod is implemented this way on purpose, since the alternative would be less efficient.)
 
 ## Source Code:
