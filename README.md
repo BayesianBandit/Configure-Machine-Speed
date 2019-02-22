@@ -25,20 +25,23 @@ Allows you to change how long it takes for various machines (e.g. kegs, oil make
 
 ## Supported Machines:
 - Bee House
-- Keg
-- Mayonnaise Machine
+- Charcoal Kiln
 - Cheese Press
-- Cask
 - Crystalarium
 - Furnace
+- Incubator (note: you still need to sleep to make the egg hatch after the timer runs out)
+- Keg
+- Lightning Rod
 - Loom
+- Mayonnaise Machine
+- Oil Maker
 - Preserves Jar
 - Recycling Machine
 - Seed Maker
-- Worm Bin
+- Slime Egg-Press
+- Slime Incubator (note: you still need to sleep to make the egg hatch after the timer runs out)
 - Tapper
-- Slime Incubator
-- Oil Maker
+- Worm Bin
 
 ## Known Bugs/Unsupported Machines:
 - Crab Pots don't respond to the mod
