@@ -6,6 +6,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Buildings;
+using StardewValley.Objects;
 using System.Linq;
 
 namespace ConfigureMachineSpeed
@@ -73,8 +74,11 @@ namespace ConfigureMachineSpeed
                 foreach (GameLocation loc in locations)
                 {
                     Func<KeyValuePair<Vector2, StardewValley.Object>, bool> nameMatch = p => p.Value.name == cfg.Name;
-                    foreach (KeyValuePair<Vector2, StardewValley.Object> pair in loc.objects.Pairs.Where(nameMatch))
-                        configureMachine(cfg, pair.Value);
+                    foreach (KeyValuePair<Vector2, StardewValley.Object> pair in loc.objects.Pairs)
+                    {
+                        if (nameMatch(pair))
+                            configureMachine(cfg, pair.Value);
+                    }
                 }
             }
         }
@@ -84,7 +88,13 @@ namespace ConfigureMachineSpeed
         private void configureMachine (MachineConfig cfg, StardewValley.Object obj)
         {
             if (obj.MinutesUntilReady > 0 && obj.MinutesUntilReady % 10 == 0)
-                obj.MinutesUntilReady = cfg.Minutes;
+            {
+                    obj.MinutesUntilReady = cfg.Minutes;
+            }
+            if (obj is Cask)
+            {
+                ((Cask)obj).daysToMature.Value = cfg.Minutes / 1440;
+            }
         }
 
         /// Get all game locations.
