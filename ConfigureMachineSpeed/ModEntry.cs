@@ -102,40 +102,55 @@ namespace ConfigureMachineSpeed
         // Be sure to check that the second parameter is a machine before passing it to this function.
         private void configureMachine (MachineConfig cfg, StardewValley.Object obj)
         {
-            if (!(obj.MinutesUntilReady % 10 == 8))
+            // If machine hasn't been configured yet.   
+            if (obj is Cask c && obj.heldObject.Value != null)
             {
-                // If machine hasn't been configured yet.   
-                if (obj is Cask && obj.heldObject.Value != null)
+                float agingRate = 1f;
+                switch (c.heldObject.Value.ParentSheetIndex)
                 {
-                    // Configure casks
-                    if (cfg.UsePercent && Math.Abs(cfg.Time - 100f) > EPSILON)
-                    {
-                        // By percentage
-                        ((Cask)obj).daysToMature.Value = ((Cask)obj).daysToMature.Value * cfg.Time / 100;
-                    } else
-                    {
-                        // By minutes
-                        ((Cask)obj).daysToMature.Value = cfg.Time / 1440;
-                    }
-                    obj.MinutesUntilReady = 168;
-                } else if (obj.MinutesUntilReady > 0) {
-                    // Configure all machines other than casks
-                    float x;
-                    if (cfg.UsePercent && Math.Abs(cfg.Time - 100f) > EPSILON)
-                    {
-                        // By percentage
-                        obj.MinutesUntilReady = Math.Max(((int)(obj.MinutesUntilReady * cfg.Time / 100 / 10)) * 10 - 2, 8);
-                    }
-                    else if (Math.Abs(cfg.Time - 100f) > EPSILON)
-                    {
-                        // By minutes
-                        obj.MinutesUntilReady = Math.Max(((int)(cfg.Time / 10)) * 10 - 2, 8);
-                    }
+                    case 426:
+                        agingRate = 4f;
+                        break;
+                    case 424:
+                        agingRate = 4f;
+                        break;
+                    case 459:
+                        agingRate = 2f;
+                        break;
+                    case 303:
+                        agingRate = 1.66f;
+                        break;
+                    case 346:
+                        agingRate = 2f;
+                        break;
                 }
-            } else if (obj is Cask && obj.heldObject.Value == null)
-            {
-                this.Monitor.Log($"Cask Reset: MinutesUntilReady={obj.MinutesUntilReady}, daysToMature={((Cask)obj).daysToMature.Value}");
-                obj.MinutesUntilReady = 0;
+                // Configure casks
+                if (cfg.UsePercent && Math.Abs(cfg.Time - 100f) > EPSILON && (int)Math.Round(c.agingRate.Value * 1000) % 10 != 1)
+                {
+                    // By percentage
+                    c.agingRate.Value = agingRate * 100 / cfg.Time;
+                    c.agingRate.Value = (float)Math.Round(c.agingRate.Value, 2);
+                    c.agingRate.Value += 0.001f;
+                }
+                else if (!cfg.UsePercent && (int)Math.Round(c.agingRate.Value * 1000) % 10 != 1)
+                {
+                    // By minutes
+                    c.agingRate.Value = (c.daysToMature.Value / agingRate * 1440) / cfg.Time;
+                    c.agingRate.Value = (float)Math.Round(c.agingRate.Value, 2);
+                    c.agingRate.Value += 0.001f;
+                }
+            } else if (obj.MinutesUntilReady % 10 != 8 && obj.MinutesUntilReady > 0) {
+                // Configure all machines other than casks
+                if (cfg.UsePercent && Math.Abs(cfg.Time - 100f) > EPSILON)
+                {
+                    // By percentage
+                    obj.MinutesUntilReady = Math.Max(((int)(obj.MinutesUntilReady * cfg.Time / 100 / 10)) * 10 - 2, 8);
+                }
+                else if (!cfg.UsePercent)
+                {
+                    // By minutes
+                    obj.MinutesUntilReady = Math.Max(((int)(cfg.Time / 10)) * 10 - 2, 8);
+                }
             }
         }
 
